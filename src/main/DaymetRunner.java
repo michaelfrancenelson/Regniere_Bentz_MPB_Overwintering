@@ -7,11 +7,27 @@ public class DaymetRunner extends ModelRunner{
 
 	public static void main(String[] args)
 	{
-		int tileID = 10832;
-		int startYear = 1980;
-		int endYear = 1985;
-		String inputDataDirectory = "E:/Data/Daymet/Tiles/" + tileID + "/";
-		String outputDirectory = inputDataDirectory;
+		int tileID = -1;
+		int startYear = -1;
+		int endYear = -1;
+		String inputDataDirectory = null;
+		String outputDirectory = null;
+		
+		if (args.length > 0)
+		{
+			tileID = Integer.parseInt(args[0]);
+			startYear = Integer.parseInt(args[1]);
+			endYear = Integer.parseInt(args[2]);
+			inputDataDirectory = args[3];
+			outputDirectory = args[4];
+		}
+		/* java -jar DaymetRunner.jar 10832 1980 1985 E:/Data/Daymet/Tiles/10832/ E:/Data/Daymet/Tiles/10832/ */ 
+		/* Uncomment and edit these to specify arguments within this source. */
+//		int tileID = 10832;
+//		int startYear = 1980;
+//		int endYear = 1985;
+//		String inputDataDirectory = "E:/Data/Daymet/Tiles/" + tileID + "/";
+//		String outputDirectory = inputDataDirectory;
 		
 		DaymetRunner runner = new DaymetRunner();
 		runner.run(tileID, startYear, endYear, inputDataDirectory, outputDirectory);
