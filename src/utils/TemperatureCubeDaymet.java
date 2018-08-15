@@ -30,8 +30,6 @@ public class TemperatureCubeDaymet implements TemperatureCube{
 
 		startDate = LocalDate.of(year, 1, 1);
 		
-		System.out.println("n rows : " + temperaturesMin_f[0].length + " n cols: " + temperaturesMax_f[0][0].length);
-		
 		try {
 			ncfile_min.close();
 			ncfile_max.close();
@@ -51,18 +49,17 @@ public class TemperatureCubeDaymet implements TemperatureCube{
 	}
 	
 
+	@Override
+	public int getNcols() { return temperaturesMin_f[0].length; }
 	
 	@Override
-	public int getNrows() { return temperaturesMin_f[0].length; }
-	
-	@Override
-	public int getNcols() { return temperaturesMin_f[0][0].length; }
+	public int getNrows() { return temperaturesMin_f[0][0].length; }
 
 	private double[][] floatToDouble(float[][] in)
 	{
 		double[][] out = new double[in.length][in[0].length];
-		for (int i = 0; i < in.length; i++) for (int j = 0; j < in[0].length; j++)
-			out[i][j] = (double) in[i][j];
+		for (int col = 0; col < in.length; col++) for (int row = 0; row < in[0].length; row++)
+			out[col][row] = (double) in[col][row];
 		return out;
 	}
 	

@@ -11,12 +11,12 @@ public class ModelRunner {
 	Cell[][] cells;
 	int[][] mask;
 	TemperatureCube temperatures;
-	
+
 	DataCube data_cube;
-	
+
 	int initializeDay, scoreDay;
-	
-	
+
+
 	/**
 	 * 
 	 * @param year
@@ -35,7 +35,7 @@ public class ModelRunner {
 			)
 	{
 		LocalDate today = LocalDate.ofYearDay(year, startDay);
-		
+
 		/* End date is December 31. */
 		LocalDate endDate = LocalDate.of(year, 1, 1).plusYears(1).minusDays(1);
 
@@ -57,8 +57,8 @@ public class ModelRunner {
 			for(int col = 0; col < n_col; col++) for(int row = 0; row < n_row; row++)
 				if (cells[col][row] != null)
 				{
-//					double[] temps = new double[]{(double)min_daily_layer[col][row] - tempAdjust, (double)max_daily_layer[col][row] - tempAdjust};
-					double[] temps = new double[]{(double)min_daily_layer[row][col] - tempAdjust, (double)max_daily_layer[row][col] - tempAdjust};
+					//					double[] temps = new double[]{(double)min_daily_layer[col][row] - tempAdjust, (double)max_daily_layer[col][row] - tempAdjust};
+					double[] temps = new double[]{(double)min_daily_layer[col][row] - tempAdjust, (double)max_daily_layer[col][row] - tempAdjust};
 					cells[col][row].updateDaily(temps, today);
 				}
 
@@ -67,7 +67,7 @@ public class ModelRunner {
 			/* Gather the survival scores if it is score day.*/
 			if(today.getDayOfYear() == scoreDay)
 			{
-				for(int col = 0; col < n_col; col++)	for(int row = 0; row < n_row; row++)
+				for(int col = 0; col < n_col; col++) for(int row = 0; row < n_row; row++)
 					if (cells[col][row] != null)
 					{
 						data[col][row] = cells[col][row].state[3];
@@ -78,18 +78,18 @@ public class ModelRunner {
 		}
 		return data;
 	}
-	
+
 	public void createCells(int nCol, int nRow)
 	{
 		cells = new Cell[nCol][nRow];
-		mask = new int[nCol][nRow];
-		for(int i = 0; i < nRow; i++) for(int j = 0; j < nCol; j++)
-			{
-			if (mask[j][i] == 0) 
-				cells[j][i] = new Cell();
+//		mask = new int[nCol][nRow];
+		for(int col = 0; col < nCol; col++) for(int row = 0; row < nRow; row++)
+		{
+			if (mask[col][row] == 0) 
+				cells[col][row] = new Cell();
 			else 
-				cells[j][i] = null;
-			}
+				cells[col][row] = null;
+		}
 	}
 
 
