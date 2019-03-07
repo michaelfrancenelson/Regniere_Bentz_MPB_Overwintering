@@ -2,21 +2,10 @@ package main;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.io.IOException;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-import ucar.ma2.Array;
-import ucar.ma2.DataType;
-import ucar.ma2.Index;
-import ucar.nc2.Attribute;
-import ucar.nc2.Dimension;
-import ucar.nc2.NetcdfFile;
-import ucar.nc2.NetcdfFileWriter;
-import ucar.nc2.NetcdfFileWriter.Version;
-import ucar.nc2.Variable;
 import utils.DataCubeDaymet;
 import utils.TemperatureCubeDaymet;
 
@@ -200,7 +189,7 @@ public class DaymetMinTemps {
 		String outputDirectory = "E:/Data/Daymet/annual_tmin_java/";
 		String outputDirectory_wmin = "E:/Data/Daymet/winter_tmin_java/";
 
-		List<String> tileIDs = findFoldersInDirectory("E:/Data/Daymet/Tiles/");
+//		List<String> tileIDs = findFoldersInDirectory("E:/Data/Daymet/Tiles/");
 
 		DaymetMinTemps dm = new DaymetMinTemps();
 
